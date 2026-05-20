@@ -1,0 +1,38 @@
+<configuration name="telegram.conf" description="Telegram Endpoint">
+  <settings>
+    <param name="debug" value="0"/>
+    <!-- Telegram DC server address (default: test DC, use 149.154.167.50:443 for production) -->
+    <param name="server" value="149.154.167.40:443"/>
+    <!-- FreeSWITCH dialplan to route inbound Telegram calls -->
+    <param name="dialplan" value="XML"/>
+    <param name="context" value="default"/>
+  </settings>
+
+  <profiles>
+    <!--
+      Each profile represents one Telegram account.
+      database-dir and files-dir default to:
+        ${db_dir}/telegram/<profile-name>/
+        ${db_dir}/telegram/<profile-name>/files/
+      Override only if a custom path is required.
+    -->
+    <profile name="account1" enabled="true">
+      <param name="api-id"   value="YOUR_API_ID"/>
+      <param name="api-hash" value="YOUR_API_HASH"/>
+      <param name="login"   value="YOUTR_PHONE"/>
+      <param name="password"   value="YOUR_PASSWORD"/>
+      <param name="server"   value="149.154.167.40:443"/>
+      <!-- <param name="database-dir" value="/custom/path/db"/> -->
+      <!-- <param name="files-dir"    value="/custom/path/files"/> -->
+
+      <!--
+        Event type and subclass fired for inbound text messages.
+        Default (no params): SWITCH_EVENT_MESSAGE with no subclass.
+        For mod_sms chatplan routing use CUSTOM + SMS::SEND_MESSAGE:
+      -->
+      <param name="inbound-event-type"     value="CUSTOM"/>
+      <param name="inbound-event-subclass" value="SMS::SEND_MESSAGE"/>
+      <param name="inbound-dest-proto"     value="GLOBAL_SMS"/>
+    </profile>
+  </profiles>
+</configuration>
