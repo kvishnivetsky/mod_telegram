@@ -23,6 +23,7 @@
  *
  * Contributor(s):
  *
+ * Konstantin S. Vishnivetskii <konstantinvishnivetsky@gmail.com>
  *
  * mod_telegram.cpp -- Telegram Endpoint Module
  *
